@@ -14,7 +14,7 @@ namespace Mysoft.Core
         public  static IocContainer Instance { get; private set; } = new IocContainer();
         private IocContainer() { }
 
-        public ContainerBuilder ContainerBuilder { get { return _builder; } }
+        internal ContainerBuilder ContainerBuilder { get { return _builder; } }
 
         public void RegisterOver()
         {
@@ -27,6 +27,15 @@ namespace Mysoft.Core
         public object GetService(Type type)
         {
             return _container.Resolve(type);
+        }
+
+        public void RegisterType<TFrom, TTo>() where TTo : TFrom
+        {
+            _builder.RegisterType<TTo>().As<TFrom>();
+        }
+        public void RegisterType(Type from, Type to)
+        {
+            _builder.RegisterType(from).As(to);
         }
     }
 }

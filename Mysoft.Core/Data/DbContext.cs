@@ -457,5 +457,12 @@ namespace Mysoft.Core
             var sql = string.Format("select * from {0}s where Id=@Id", typeof(T).Name);
             return New().ExecuteSingle<T>(sql, new { Id = key });
         }
+
+
+        public static List<T> GetList<T>() where T : class, new()
+        {
+            var sql = string.Format("select * from {0}s ", typeof(T).Name);
+            return New().ExecuteList<T>(sql);
+        }
     }
 }

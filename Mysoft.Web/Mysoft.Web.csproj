@@ -123,6 +123,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Assets\anguler\angular.min.js" />
     <Content Include="Assets\bootstrap\bootstrap.min.css" />
     <Content Include="Assets\bootstrap\bootstrap.min.js" />
     <Content Include="Assets\common\style.css" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\anguler\angular.js-1.5.0\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
