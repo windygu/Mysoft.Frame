@@ -1,12 +1,9 @@
 ﻿/*common*/
-h5 {
-    font-weight: 600;
-}
-h3 {
-
-}
 body {
-    color: #676a6c;
+  
+   
+     /*font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;*/
+    font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 }
 
 .warp {
@@ -122,6 +119,11 @@ body {
     border-bottom: 1px solid #ddd;
 
 }
+/*.nav-tabs>li>a {
+    color: #A7B1C2;
+    font-weight: 600;
+    padding: 10px 20px 10px 25px;
+}*/
 /*空行*/
 /*虚线行*/
 .hr-line-dashed {
