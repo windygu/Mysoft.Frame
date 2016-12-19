@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title> </title> 
     <link rel="shortcut icon" href="favicon.ico">
-
-    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Assets/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="/Assets/common/style.css" rel="stylesheet" />
-    <script src="/Assets/jquery/jquery.min.js"></script> 
-    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
-    @*<link href="~/Assets/fonts/font-awesome.min.css" rel="stylesheet" />*@
+    <script src="/Assets/jquery/jquery.min.js"></script>
+    <script src="/Assets/bootstrap/bootstrap.min.js"></script>
+    <link href="~/Assets/fonts/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Assets/plugins/treeview/bootstrap-treeview.css" rel="stylesheet" />
     <script src="~/Assets/plugins/treeview/bootstrap-treeview.js"></script>
 </head>
@@ -51,111 +50,109 @@
                        <!-- Tab panes -->
                        <div class="tab-content">
                            <div class="tab-pane active" role="tabpanel" id="home">
-                              <!-- 对象类信息-->
-                                    <div class="box-content">
-                                       <form method="get" class="form-horizontal">
-                                           <div class="form-group">
-                                               <label class="col-sm-2 control-label">对象类名称：</label>
-                                               <div class="col-sm-10">
-                                                   <input type="text" name="Name" class="form-control">
-                                               </div>
+                               <div class="box-content">
+                                   <form method="get" class="form-horizontal">
+                                       <div class="form-group">
+                                           <label class="col-sm-2 control-label">普通</label>
+                                           <div class="col-sm-10">
+                                               <input type="text" class="form-control">
                                            </div>
-                                           <div class="hr-line-dashed"></div>
-                                           <div class="form-group">
-                                               <label class="col-sm-2 control-label">数据库表名称：</label>
-                                               <div class="col-sm-10">
-                                                   <input type="text" class="form-control">
-                                                   @*<span class="help-block m-b-none">帮助文本，可能会超过一行，以块级元素显示</span>*@
-                                               </div>
+                                       </div>
+                                       <div class="hr-line-dashed"></div>
+                                       <div class="form-group">
+                                           <label class="col-sm-2 control-label">带说明信息</label>
+                                           <div class="col-sm-10">
+                                               <input type="text" class="form-control"> <span class="help-block m-b-none">帮助文本，可能会超过一行，以块级元素显示</span>
                                            </div>
-                                           <div class="hr-line-dashed"></div>
-                                           <div class="form-group">
-                                               <label class="col-sm-2 control-label">密码</label>
-                                               <div class="col-sm-10">
-                                                   <input type="password" class="form-control" name="password">
-                                               </div>
+                                       </div>
+                                       <div class="hr-line-dashed"></div>
+                                       <div class="form-group">
+                                           <label class="col-sm-2 control-label">密码</label>
+                                           <div class="col-sm-10">
+                                               <input type="password" class="form-control" name="password">
                                            </div>
-                                           <div class="hr-line-dashed"></div>
-                                           <div class="form-group">
-                                               <label class="col-sm-2 control-label">提示</label>
-                                               <div class="col-sm-10">
-                                                   <input type="text" placeholder="提示信息" class="form-control">
-                                               </div>
+                                       </div>
+                                       <div class="hr-line-dashed"></div>
+                                       <div class="form-group">
+                                           <label class="col-sm-2 control-label">提示</label>
+                                           <div class="col-sm-10">
+                                               <input type="text" placeholder="提示信息" class="form-control">
                                            </div>
-                                           <div class="hr-line-dashed"></div>
-                                           <div class="form-group">
-                                               <label class="col-sm-2 control-label">禁用</label>
-                                               <div class="col-sm-10">
-                                                   <input type="text" disabled="" placeholder="已被禁用" class="form-control">
-                                               </div>
+                                       </div>
+                                       <div class="hr-line-dashed"></div>
+                                       <div class="form-group">
+                                           <label class="col-sm-2 control-label">禁用</label>
+                                           <div class="col-sm-10">
+                                               <input type="text" disabled="" placeholder="已被禁用" class="form-control">
                                            </div>
-                                           <div class="hr-line-dashed"></div>
-
-
-
-                                       </form>
-                                   </div>
-
+                                       </div>
+                                       <div class="hr-line-dashed"></div>
+                                     
+                                          
+                                        
+                                   </form>
                                </div>
 
-                               <div role="tabpanel" class="tab-pane" id="profile">
-                                   2
-                               </div>
-                               <div role="tabpanel" class="tab-pane" id="messages">
-                                   3
-                               </div>
-                               <div role="tabpanel" class="tab-pane" id="settings">
-                                   4
-                               </div>
+                           </div>
+                          
+                           <div role="tabpanel" class="tab-pane" id="profile">
+                               2
+                           </div>
+                           <div role="tabpanel" class="tab-pane" id="messages">
+                               3
+                           </div>
+                           <div role="tabpanel" class="tab-pane" id="settings">
+                               4
                            </div>
                        </div>
                    </div>
-                </div>
+               </div>
             </div>
         </div>
-    </body>
-    </html>
-    <script>
-        var data = [{
-            text: "Parent 1",
-            nodes: [
-              {
-                  text: "Child 1",
-                  nodes: [
-                    {
-                        text: "Grandchild 1"
-                    },
-                    {
-                        text: "Grandchild 2"
-                    }
-                  ]
-              },
-              {
-                  text: "Child 2"
-              }
-            ]
-        },
-      {
-          text: "Parent 2"
-      },
-      {
-          text: "Parent 3"
-      },
-      {
-          text: "Parent 4"
-      },
-      {
-          text: "Parent 5"
-      }];
-        $('#treeview').treeview({
-            data: data,         // data is not optional
+    </div>
+</body>
+</html>
+<script>
+    var data = [{
+        text: "Parent 1",
+        nodes: [
+          {
+              text: "Child 1",
+              nodes: [
+                {
+                    text: "Grandchild 1"
+                },
+                {
+                    text: "Grandchild 2"
+                }
+              ]
+          },
+          {
+              text: "Child 2"
+          }
+        ]
+    },
+  {
+      text: "Parent 2"
+  },
+  {
+      text: "Parent 3"
+  },
+  {
+      text: "Parent 4"
+  },
+  {
+      text: "Parent 5"
+  }];
+    $('#treeview').treeview({
+        data: data,         // data is not optional
+       
+        multiSelect: false,
+        
+    })
 
-            multiSelect: false,
-
-        })
-
-        //$('#metaclassinfos li a').click(function (e) {
-        //    e.preventDefault()
-        //    $(this).tab('show')
-        //})
-    </script>
+    //$('#metaclassinfos li a').click(function (e) {
+    //    e.preventDefault()
+    //    $(this).tab('show')
+    //})
+</script>
