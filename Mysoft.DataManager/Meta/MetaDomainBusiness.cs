@@ -14,15 +14,14 @@ namespace Mysoft.DataManager
 
         public static MetaClassDefine GetMetaClassDefine(string classId)
         {
-            const string sql = @"
-                    select * from MetaClassDefines c where c.Id=@Id;
-                    select * from  MetaPropertyDefine where ClassId=@Id
-                    ";
-            return DbQuery.New().ExecuteList<MetaClassDefine, MetaPropertyDefine>(sql, new { Id = classId }, (x, y) =>
-            {
-                x.ForEach(x1 => x1.PropertyDefineList.AddRange(y.Where(y1 => y1.ClassId == x1.Id)));
-                return x;
-            }).FirstOrDefault();
+            const string sc = @"select * from MetaClassDefines where Id=@Id";
+            const string sp = @"select * from  MetaPropertyDefine where ClassId=@Id";
+            using (var db = DbQuery.New(true)) {
+                var param = new { Id = classId };
+                var cls = db.ExecuteSingle<MetaClassDefine>(sc, param);
+                cls.PropertyDefineList = db.ExecuteList<MetaPropertyDefine>(sp, param);
+                return cls;
+            }
         }
         
 
