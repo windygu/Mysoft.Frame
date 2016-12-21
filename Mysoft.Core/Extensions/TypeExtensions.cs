@@ -1,26 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Mysoft.Core
 {
-    public  static class Extensions
+    public static class TypeExtensions
     {
-        #region 字符串
-        /// <summary>
-        /// 判断字符串是否相等
-        /// </summary>
-        /// <param name="str1"></param>
-        /// <param name="str2"></param>
-        /// <param name="com"></param>
-        /// <returns></returns>
-        public static bool IsSame(this string str1, string str2, StringComparison com = StringComparison.OrdinalIgnoreCase)
-        {
-            return str1.Equals(str2, com);
-        }
-        #endregion
 
         #region 类型转换
         public static int ToInt(this object @this)
@@ -132,107 +118,5 @@ namespace Mysoft.Core
             }
         }
         #endregion
-
-        #region 集合
-        public static void Foreach<T>(this IEnumerable<T> source, Action<T> action)
-        {
-            foreach (T item in source)
-            {
-                action(item);
-            }
-        }
-
-
-        #endregion
-
-        #region dictionary
-        /// <summary>
-        /// 获取或者新增
-        /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="dic"></param>
-        /// <param name="key"></param>
-        /// <param name="valueFunc"></param>
-        /// <returns></returns>
-        public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dic, TKey key, Func<TKey,TValue> valueFunc)
-        {
-            if (dic.ContainsKey(key))
-            {
-                return dic[key];
-            }
-            else
-            {
-                dic[key] = valueFunc(key);
-                return dic[key];
-            }
-        }
-        /// <summary>
-        /// 获取或者新增
-        /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="dic"></param>
-        /// <param name="key"></param>
-        /// <param name="valueFunc"></param>
-        /// <returns></returns>
-        public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dic, TKey key, Func<TValue> valueFunc)
-        {
-            if (dic.ContainsKey(key))
-            {
-                return dic[key];
-            }
-            else
-            {
-                dic[key] = valueFunc();
-                return dic[key];
-            }
-        }
-        /// <summary>
-        /// 获取或者新增
-        /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="dic"></param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static TValue GetOrAdd<TKey, TValue>(this Dictionary<TKey, TValue> dic, TKey key, TValue value)
-        {
-            if (dic.ContainsKey(key))
-            {
-                return dic[key];
-            }
-            else {
-                dic[key] = value;
-                return value;
-            }
-        }
-        public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dic, TKey key, TValue defaultValue = default(TValue))
-        {
-            if (dic.ContainsKey(key))
-            {
-                return dic[key];
-            }
-            else
-            {
-                return defaultValue;
-            }
-        }
-        #endregion
-
-        #region 反射相关
-        /// <summary>
-        /// 类型是否为简单类型
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static bool IsSimpleType(this Type type)
-        {
-            return type.IsValueType || type == ConstValue.TypeOfString;
-        }
-
-        #endregion
     }
-     
 }

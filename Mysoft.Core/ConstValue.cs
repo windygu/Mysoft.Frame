@@ -14,7 +14,11 @@ namespace Mysoft.Core
         public static readonly Type TypeOfString = typeof(string);
 
         public static readonly Type TypeOfInt = typeof(int);
-        
-        #endregion  
+
+        public static readonly Type TypeOfDateTime = typeof(DateTime);
+        #endregion
+        #region session Key
+        public static readonly string SessionKey_Identity = "common_Identity";
+        #endregion
     }
 }

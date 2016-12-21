@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Mysoft.Core
 {
-    public class Security
+    public class SecurityHelper
     {
 
         #region MD5
@@ -173,6 +173,10 @@ namespace Mysoft.Core
         }
 
 
+        #endregion
+
+        #region RSA
+        
         #endregion
     }
 }

@@ -16,14 +16,15 @@ namespace Mysoft.Core
        
         public DbConnection Connection { get { return conn; } }
         public bool IsTrans { get { return trans != null; } }
+        public bool IsStill { get; private set; }
         private DbQuery()
         {
             conn = DbProvider.NewConnection();
         }
 
-        public static DbQuery New()
+        public static DbQuery New(bool isStill=false)
         {
-            return new DbQuery();
+            return new DbQuery() { IsStill = isStill };
         }
         public static DbQuery NewTrans()
         {
@@ -64,7 +65,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public int ExecuteNoQuery(string sql,object param = null)
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var comm =  CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -81,7 +82,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public int ExecuteNoQuery(string sql, IEnumerable<object> param)
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 if (conn.State != ConnectionState.Open)
                     conn.Open();
@@ -100,7 +101,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public T ExecuteScalar<T>(string sql, object param = null)
         {
-            using (var context = new SqlExecuteContext(conn,trans))
+            using (var context = new SqlExecuteContext(conn, trans, IsStill))
             {
                var comm =   CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -116,7 +117,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public DataTable ExecuteDataTable(string sql, object param = null)
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var comm =  CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -137,7 +138,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public DataSet ExecuteDataSet(string sql, object param = null)
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var comm =  CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -159,7 +160,7 @@ namespace Mysoft.Core
         /// <returns></returns>
         public T ExecuteSingle<T>(string sql, object param = null,Func<DbDataReader,T> func=null) where T : class, new()
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var cmd = CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -180,7 +181,7 @@ namespace Mysoft.Core
         }
 
         public DynamicEntity ExecuteSingle(string sql, object param = null) {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var cmd = CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -199,7 +200,7 @@ namespace Mysoft.Core
         }
         public List<DynamicEntity> ExecuteList(string sql, object param=null)
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var cmd = CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
@@ -223,7 +224,7 @@ namespace Mysoft.Core
         }
         public List<T> ExecuteList<T>(string sql, object param = null) where T : class, new()
         {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var list = new List<T>();
                 var type = typeof(T);
@@ -245,7 +246,7 @@ namespace Mysoft.Core
         }
 
         public List<T1> ExecuteList<T1, T2>(string sql, object param = null,Func<List<T1>, List<T2>, List<T1>> func=null) {
-            using (var context = new SqlExecuteContext(conn, trans))
+            using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
                 var list = new List<T1>();
                 var type = typeof(T1);
@@ -361,19 +362,44 @@ namespace Mysoft.Core
     {
         public DbConnection Connection { get; set; }
         public DbTransaction Trans { get; set; }
+
+        public bool IsTrans { get; set; }
+        public DbQuery DbQuery { get; private set; }
+
+        public bool IsStill { get; private set; }
         public SqlExecuteContext(DbConnection conn,DbTransaction trans)
         {
             this.Connection = conn;
             this.Trans = trans;
         }
+        public SqlExecuteContext(DbConnection conn, DbTransaction trans,bool isStill)
+        {
+            this.Connection = conn;
+            this.Trans = trans;
+            IsTrans = trans != null;
+            IsStill = IsTrans || isStill;
+        }
+
+        public SqlExecuteContext(DbQuery dbquery)
+        {
+            
+            IsTrans = dbquery.IsTrans;
+            IsStill = IsTrans || dbquery.IsStill;
+        }
  
         public void Dispose()
         {
-            if (Trans==null)
+
+            if (!IsTrans)
             {
                 if (Connection.State != ConnectionState.Closed)
                     Connection.Close();
-            }
+                if (!IsStill)
+                {
+                    Connection.Dispose();
+                }
+            } 
+            
         }
     }
 

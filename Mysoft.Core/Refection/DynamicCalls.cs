@@ -331,34 +331,4 @@ namespace Mysoft.Core
 
     #endregion
 
-    #region 快速反射扩展方法
-    public static class RefectionExtensions
-    {
-        /// <summary>
-        /// 快速获取属性值
-        /// </summary>
-        /// <param name="property"></param>
-        /// <param name="instance"></param>
-        /// <returns></returns>
-        public static object FastGetValue(this PropertyInfo property, object instance)
-        {
-            var getter = DynamicCalls.GetPropertyGetter(property);
-            return getter(instance);
-        }
-
-        /// <summary>
-        /// 快速给属性赋值
-        /// </summary>
-        /// <param name="property"></param>
-        /// <param name="instance"></param>
-        /// <param name="value"></param>
-        public static void FastSetValue(this PropertyInfo property, object instance, object value)
-        {
-            var setter = DynamicCalls.GetPropertySetter(property);
-            setter(instance, value);
-        }
-
-    }
-
-    #endregion  
 }
