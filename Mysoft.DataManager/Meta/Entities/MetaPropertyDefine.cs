@@ -75,6 +75,18 @@ namespace Mysoft.DataManager
         public string ColName { get; set; }
         #endregion
 
+        #region 显示方式
+        /// <summary>
+        /// 显示方式
+        /// </summary>
+        public MetaShowType ShowType { get; set; }
+        /// <summary>
+        /// 选择项
+        /// </summary>
+        public Dictionary<string, string> Options { get; set; }
+
+        #endregion
+
 
 
     }

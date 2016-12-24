@@ -43,6 +43,7 @@
     <Compile Include="Meta\Entities\MetaDataType.cs" />
     <Compile Include="Meta\Entities\MetaDomain.cs" />
     <Compile Include="Meta\Entities\MetaPropertyDefine.cs" />
+    <Compile Include="Meta\Entities\MetaShowType.cs" />
     <Compile Include="Meta\MetaDomainBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
