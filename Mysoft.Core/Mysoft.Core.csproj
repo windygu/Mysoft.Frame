@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConstValue.cs" />
+    <Compile Include="Data\DbColAttribute.cs" />
     <Compile Include="Data\DbQuery.cs" />
     <Compile Include="Data\DbProvider.cs" />
     <Compile Include="Data\EntityBase.cs" />
