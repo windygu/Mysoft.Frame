@@ -51,6 +51,7 @@ namespace Mysoft.DataManager
         public bool IsDisabled { get; set; }
 
         #endregion  
+
         #region 引用属性
         /// <summary>
         /// 是否引用属性
@@ -80,6 +81,8 @@ namespace Mysoft.DataManager
         /// 显示方式
         /// </summary>
         public MetaShowType ShowType { get; set; }
+
+        [DbColFunc(x=>x.ToString().ToDictionary())]
         /// <summary>
         /// 选择项
         /// </summary>

@@ -134,6 +134,11 @@
     <Content Include="Assets\jquery\jquery-ui-1.10.4.min.js" />
     <Content Include="Assets\jquery\jquery-ui.custom.min.js" />
     <Content Include="Assets\jquery\jquery.min.js" />
+    <Content Include="Assets\main\main.js" />
+    <Content Include="Assets\plugins\artTemple\template-debug.js" />
+    <Content Include="Assets\plugins\artTemple\template-native-debug.js" />
+    <Content Include="Assets\plugins\artTemple\template-native.js" />
+    <Content Include="Assets\plugins\artTemple\template.js" />
     <Content Include="Assets\plugins\treeview\bootstrap-treeview.css" />
     <Content Include="Assets\plugins\treeview\bootstrap-treeview.js" />
     <Content Include="Global.asax" />

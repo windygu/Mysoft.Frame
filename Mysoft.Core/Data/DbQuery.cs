@@ -158,7 +158,7 @@ namespace Mysoft.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        public T ExecuteSingle<T>(string sql, object param = null,Func<DbDataReader,T> func=null) where T : class, new()
+        public T ExecuteSingle<T>(string sql, object param = null,Action<T, DbDataReader> anfterAction=null) where T : class, new()
         {
             using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
@@ -168,13 +168,9 @@ namespace Mysoft.Core
                 using (DbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
                 {
                     reader.Read();
-                    if (func != null)
-                    {
-                        return func(reader);
-                    }
-                    else {
-                        return (T)GetEntity(reader, typeof(T));
-                    }                    
+                    var t =(T)GetEntity(reader, typeof(T));
+                    anfterAction(t, reader);
+                    return t;   
                 }
             }
            
@@ -222,7 +218,7 @@ namespace Mysoft.Core
             }
 
         }
-        public List<T> ExecuteList<T>(string sql, object param = null) where T : class, new()
+        public List<T> ExecuteList<T>(string sql, object param = null, Action<T, DbDataReader> anfterAction = null) where T : class, new()
         {
             using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
@@ -237,6 +233,7 @@ namespace Mysoft.Core
                     while (reader.Read())
                     {
                         var t = (T)GetEntity(reader, type, properties);
+                        anfterAction(t, reader);
                         list.Add(t);
                     }
                     return list;
@@ -245,75 +242,75 @@ namespace Mysoft.Core
 
         }
 
-        public List<T1> ExecuteList<T1, T2>(string sql, object param = null,Func<List<T1>, List<T2>, List<T1>> func=null) {
-            using (var context = new SqlExecuteContext(conn, trans,IsStill))
-            {
-                var list = new List<T1>();
-                var type = typeof(T1);
-                List<T2> list2 = new List<T2>();
-                var type2 = typeof(T2);
-                var properties = type.GetProperties( );
-                var properties2 = type2.GetProperties( );
-                var cmd = CreateDbCommand(sql, param);
-                if (conn.State != ConnectionState.Open)
-                    conn.Open();
-                if (func == null)
-                {
-                    func = (x, y)
-                        =>
-                    {
-                        //1.1找到T1中 与T2类型一致,表示T1：T2 是 N：1
-                        var t = properties.FirstOrDefault(p => p.PropertyType == type2);
-                        if (t != null) {
-                            x.ForEach(x1 =>
-                            {
-                                //1.2 找到 T1的外键
-                                var fkey = properties.First(p => p.Name.IsSame(t.Name + "Id"));
-                                var fValue = fkey.FastGetValue(x1);
-                                //1.3. 找到 T2的主键
-                                var t2Key = properties2.First(p => p.Name.IsSame("Id"));
-                                //1.4.遍历T2集合，找到与T1外键匹配的项
-                                t.FastSetValue(x1, y.FirstOrDefault(y1 => t2Key.FastGetValue(y1).Equals(fValue)));
-                            });
-                        }
-                        //2.1 找到T1中 与T2类型一致,表示T1：T2 是 1：N
+        //public List<T1> ExecuteList<T1, T2>(string sql, object param = null,Func<List<T1>, List<T2>, List<T1>> func=null) {
+        //    using (var context = new SqlExecuteContext(conn, trans,IsStill))
+        //    {
+        //        var list = new List<T1>();
+        //        var type = typeof(T1);
+        //        List<T2> list2 = new List<T2>();
+        //        var type2 = typeof(T2);
+        //        var properties = type.GetProperties( );
+        //        var properties2 = type2.GetProperties( );
+        //        var cmd = CreateDbCommand(sql, param);
+        //        if (conn.State != ConnectionState.Open)
+        //            conn.Open();
+        //        if (func == null)
+        //        {
+        //            func = (x, y)
+        //                =>
+        //            {
+        //                //1.1找到T1中 与T2类型一致,表示T1：T2 是 N：1
+        //                var t = properties.FirstOrDefault(p => p.PropertyType == type2);
+        //                if (t != null) {
+        //                    x.ForEach(x1 =>
+        //                    {
+        //                        //1.2 找到 T1的外键
+        //                        var fkey = properties.First(p => p.Name.IsSame(t.Name + "Id"));
+        //                        var fValue = fkey.FastGetValue(x1);
+        //                        //1.3. 找到 T2的主键
+        //                        var t2Key = properties2.First(p => p.Name.IsSame("Id"));
+        //                        //1.4.遍历T2集合，找到与T1外键匹配的项
+        //                        t.FastSetValue(x1, y.FirstOrDefault(y1 => t2Key.FastGetValue(y1).Equals(fValue)));
+        //                    });
+        //                }
+        //                //2.1 找到T1中 与T2类型一致,表示T1：T2 是 1：N
                        
-                       else if ((t =properties.FirstOrDefault(p => p.PropertyType.IsGenericType && p.PropertyType == typeof(List<T2>)))!= null) {
-                            x.ForEach(x1 =>
-                            {
-                                //1.2 找到 T2的外键
-                                var fkey = properties2.First(p => p.Name.IsSame(type.Name + "Id"));
-                                //1.3 找到 T1的主键
-                                var t1key = properties.First(p => p.Name.IsSame("Id"));
-                                var t1value = t1key.FastGetValue(x1);
-                                //1.4.遍历T2集合，找到与T1主键键匹配的项
-                                t.FastSetValue(x1, y.Where(y1 => fkey.FastGetValue(y1)==(t1value)).ToList());
-                            });
-                        }
-                        return x;
-                    };
+        //               else if ((t =properties.FirstOrDefault(p => p.PropertyType.IsGenericType && p.PropertyType == typeof(List<T2>)))!= null) {
+        //                    x.ForEach(x1 =>
+        //                    {
+        //                        //1.2 找到 T2的外键
+        //                        var fkey = properties2.First(p => p.Name.IsSame(type.Name + "Id"));
+        //                        //1.3 找到 T1的主键
+        //                        var t1key = properties.First(p => p.Name.IsSame("Id"));
+        //                        var t1value = t1key.FastGetValue(x1);
+        //                        //1.4.遍历T2集合，找到与T1主键键匹配的项
+        //                        t.FastSetValue(x1, y.Where(y1 => fkey.FastGetValue(y1)==(t1value)).ToList());
+        //                    });
+        //                }
+        //                return x;
+        //            };
 
-                }
+        //        }
 
-                using (DbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-                {   
-                    while (reader.Read())
-                    {
-                        var t = (T1)GetEntity(reader, type, properties);
-                        list.Add(t);
-                    }
+        //        using (DbDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+        //        {   
+        //            while (reader.Read())
+        //            {
+        //                var t = (T1)GetEntity(reader, type, properties);
+        //                list.Add(t);
+        //            }
                     
-                    if (reader.NextResult()) { 
-                        while (reader.Read())
-                        {
-                            var t2 = (T2)GetEntity(reader, typeof(T2));
-                            list2.Add(t2);
-                        }
-                    }
-                    return func(list,list2);
-                }
-            } 
-        }
+        //            if (reader.NextResult()) { 
+        //                while (reader.Read())
+        //                {
+        //                    var t2 = (T2)GetEntity(reader, typeof(T2));
+        //                    list2.Add(t2);
+        //                }
+        //            }
+        //            return func(list,list2);
+        //        }
+        //    } 
+        //}
 
         public DbDataReader ExecuteDataReader(string sql, object param = null)
         {
