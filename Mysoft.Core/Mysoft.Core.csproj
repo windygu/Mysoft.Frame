@@ -55,6 +55,7 @@
     <Compile Include="Data\DbColAttribute.cs" />
     <Compile Include="Data\DbQuery.cs" />
     <Compile Include="Data\DbProvider.cs" />
+    <Compile Include="Data\DbReader.cs" />
     <Compile Include="Data\EntityBase.cs" />
     <Compile Include="Exception\MyException.cs" />
     <Compile Include="Extensions\RefectionExtensions.cs" />

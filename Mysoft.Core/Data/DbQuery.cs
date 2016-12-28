@@ -158,7 +158,7 @@ namespace Mysoft.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        public T ExecuteSingle<T>(string sql, object param = null,Action<T, DbDataReader> anfterAction=null) where T : class, new()
+        public T ExecuteSingle<T>(string sql, object param = null,Action<T, DbReader> anfterAction=null) where T : class, new()
         {
             using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
@@ -169,7 +169,7 @@ namespace Mysoft.Core
                 {
                     reader.Read();
                     var t =(T)GetEntity(reader, typeof(T));
-                    anfterAction(t, reader);
+                    anfterAction?.Invoke(t, new DbReader(reader));
                     return t;   
                 }
             }
@@ -218,7 +218,7 @@ namespace Mysoft.Core
             }
 
         }
-        public List<T> ExecuteList<T>(string sql, object param = null, Action<T, DbDataReader> anfterAction = null) where T : class, new()
+        public List<T> ExecuteList<T>(string sql, object param = null, Action<T, DbReader> anfterAction = null) where T : class, new()
         {
             using (var context = new SqlExecuteContext(conn, trans,IsStill))
             {
@@ -233,7 +233,7 @@ namespace Mysoft.Core
                     while (reader.Read())
                     {
                         var t = (T)GetEntity(reader, type, properties);
-                        anfterAction(t, reader);
+                        anfterAction?.Invoke(t, new DbReader(reader));
                         list.Add(t);
                     }
                     return list;

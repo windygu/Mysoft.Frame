@@ -26,6 +26,17 @@ namespace Mysoft.Core
         }
         #endregion
 
+        #region
+        /// <summary>
+        /// tostring，不会抛出异常
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ToStr(this object obj) {
+            return obj?.ToString();
+        }
+        #endregion
+
 
     }
 }
