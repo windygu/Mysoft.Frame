@@ -118,5 +118,14 @@ namespace Mysoft.Core
             }
         }
         #endregion
+        /// <summary>
+        /// 是否是简单值类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsValueType(this Type type)
+        {
+            return type.IsValueType || type == ConstValue.TypeOfString;
+        }
     }
 }

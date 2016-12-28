@@ -15,12 +15,14 @@ namespace Mysoft.Test
     {
         static void Main(string[] args)
         {
-              ContainerBuilder _builder = new ContainerBuilder();
-              _builder.RegisterType<U>().As<IU>();
-            IContainer _container = _builder.Build();
-         
-            IU iu = _container.Resolve<IU>();
+            //  ContainerBuilder _builder = new ContainerBuilder();
+            //  _builder.RegisterType<U>().As<IU>();
+            //IContainer _container = _builder.Build();
 
+            //IU iu = _container.Resolve<IU>();
+
+            var reuslt = typeof(string).IsValueType();
+            Console.WriteLine(reuslt);
              Console.Read();
         }
 

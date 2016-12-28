@@ -82,7 +82,7 @@ namespace Mysoft.DataManager
         /// </summary>
         public MetaShowType ShowType { get; set; }
 
-        [DbColFunc(x=>x.ToString().ToDictionary())]
+        
         /// <summary>
         /// 选择项
         /// </summary>

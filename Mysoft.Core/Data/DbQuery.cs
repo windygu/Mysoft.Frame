@@ -347,7 +347,7 @@ namespace Mysoft.Core
             properties = properties ?? type.GetProperties( );
             for (var i = startNumber; i < dr.FieldCount; i++) {
                 var name = dr.GetName(i);
-                var p = properties.FirstOrDefault(x => x.Name.IsSame(name));
+                var p = properties.FirstOrDefault(x => x.Name.IsSame(name) && x.PropertyType.IsValueType());
                 if (p != null) {
                     p.FastSetValue(obj, dr[i].To(p.PropertyType));
                 }
