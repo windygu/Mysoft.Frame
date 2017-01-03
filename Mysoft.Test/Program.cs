@@ -11,8 +11,23 @@ using Autofac;
 
 namespace Mysoft.Test
 {
+
+    public class Test2 : FastVerifyEntity<string>
+    {
+        [NotNull("A")]
+        public string A { get; set; }
+
+        [NotNull("A")]
+        public string B { get; set; }
+
+        [NotNull("A")]
+        public string C { get; set; }
+    }
     class Program
     {
+
+
+
         static void Main(string[] args)
         {
             //  ContainerBuilder _builder = new ContainerBuilder();
@@ -20,6 +35,12 @@ namespace Mysoft.Test
             //IContainer _container = _builder.Build();
 
             //IU iu = _container.Resolve<IU>();
+
+            Test2 tes = new Test2();
+            tes.A = "123";
+            var res = tes.Verify();
+
+
 
             var reuslt = typeof(string).IsValueType();
             Console.WriteLine(reuslt);

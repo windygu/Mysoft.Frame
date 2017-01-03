@@ -7,10 +7,19 @@ namespace Mysoft.DataManager
 {
     public class MetaBusiness
     {
+        #region domain
         public static List<MetaDomain> GetDomains()
         {
             return DbQuery.GetList<MetaDomain>();
         }
+
+        public static int AddDomain(MetaDomain domain)
+        {            
+            domain.Verify().ThrowWhileError();
+            return DbQuery.Insert(domain);
+        }
+
+        #endregion  
 
         public static MetaClassDefine GetMetaClassDefine(string classId)
         {

@@ -6,8 +6,9 @@ using System.Text;
 
 namespace Mysoft.DataManager
 {
-    public  class MetaDomain : EntityBase<string>
+    public  class MetaDomain : FastVerifyEntity<string>
     {
+        [NotNull("名称")]
         public string Name { get; set; }
 
         public string ParentId { get; set; }
@@ -20,6 +21,6 @@ namespace Mysoft.DataManager
         /// 是否文件夹
         /// </summary>
         public bool IsDir { get; set; }
-
+         
     }
 }
