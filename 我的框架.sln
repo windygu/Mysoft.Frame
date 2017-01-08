@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mysoft.Web", "Mysoft.Web\My
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mysoft.Document", "Mysoft.Document\Mysoft.Document.csproj", "{D57094D2-92EF-4B8B-BDEA-5FBA54223BAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDemo", "WebDemo\WebDemo.csproj", "{272E0D42-28AF-40D7-885A-0088A5FB8ABF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D57094D2-92EF-4B8B-BDEA-5FBA54223BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D57094D2-92EF-4B8B-BDEA-5FBA54223BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D57094D2-92EF-4B8B-BDEA-5FBA54223BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272E0D42-28AF-40D7-885A-0088A5FB8ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272E0D42-28AF-40D7-885A-0088A5FB8ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272E0D42-28AF-40D7-885A-0088A5FB8ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272E0D42-28AF-40D7-885A-0088A5FB8ABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

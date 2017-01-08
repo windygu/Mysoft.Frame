@@ -139,9 +139,21 @@
     <Content Include="Assets\plugins\artTemple\template-native-debug.js" />
     <Content Include="Assets\plugins\artTemple\template-native.js" />
     <Content Include="Assets\plugins\artTemple\template.js" />
+    <Content Include="Assets\plugins\treegrid\css\jquery.treegrid.css" />
+    <Content Include="Assets\plugins\treegrid\img\collapse.png" />
+    <Content Include="Assets\plugins\treegrid\img\expand.png" />
+    <Content Include="Assets\plugins\treegrid\img\file.png" />
+    <Content Include="Assets\plugins\treegrid\img\folder.png" />
+    <Content Include="Assets\plugins\treegrid\js\jquery.cookie.js" />
+    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.bootstrap2.js" />
+    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.bootstrap3.js" />
+    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.js" />
+    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.min.js" />
     <Content Include="Assets\plugins\treeview\bootstrap-treeview.css" />
     <Content Include="Assets\plugins\treeview\bootstrap-treeview.js" />
     <Content Include="Global.asax" />
+    <Content Include="Test\table.html" />
+    <Content Include="Test\treeGrid.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -163,6 +163,7 @@
 </html>
 <script>
     var data = [{
+        id:"aaa",
         text: "Parent 1",
         nodes: [
           {
@@ -197,7 +198,9 @@
         data: data,         // data is not optional
        
         multiSelect: false,
-        
+        onNodeSelected: function (event,node) {
+            alert(node.id);
+        }
     })
 
     //$('#metaclassinfos li a').click(function (e) {

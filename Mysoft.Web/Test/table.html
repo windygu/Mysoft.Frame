@@ -8,18 +8,53 @@
     <script src="../Assets/plugins/artTemple/template-debug.js"></script>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>是否对象类</th>
+                    <th>存储表</th>
+                    <th>是否禁用</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            </tr>
-        </thead>
-        <tbody>
-           
-        </tbody>
-        <script type="text/html">
-
-        </script>
-    </table>
+            </tbody> 
+            <script type="text/html" class="tbody-template">
+                <tr>
+                    <td>{{Name}}</td>
+                    <td>{{Name}}</td>
+                    <td>{{Name}}</td>
+                    <td>{{Name}}</td>
+                </tr>
+            </script>
+        </table>
+    </div>
 </body>
 </html>
+<script>
+    function MTable($dom) {
+        this.$dom = $dom;
+        this.$template = this.$dom.find('.tbody-template');
+        this.$tbody = this.$dom.find('tbody').first();
+    }
+    MTable.prototype = {
+        Init: function () {
+            this._render = template.compile(this.$template.html());
+        },
+        Render: function (data) {
+            this.$tbody.html("");
+            this.$tbody.html(this._render.render(data))
+        },
+        GetSeleted: function () {
+
+        },
+
+
+
+
+    }
+
+
+</script>
