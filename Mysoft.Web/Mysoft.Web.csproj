@@ -123,10 +123,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Assets\anguler\angular.min.js" />
     <Content Include="Assets\bootstrap\bootstrap.min.css" />
     <Content Include="Assets\bootstrap\bootstrap.min.js" />
-    <Content Include="Assets\common\style.css" />
     <Content Include="Assets\fonts\font-awesome.css" />
     <Content Include="Assets\fonts\font-awesome.min.css" />
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
@@ -134,23 +132,43 @@
     <Content Include="Assets\jquery\jquery-ui-1.10.4.min.js" />
     <Content Include="Assets\jquery\jquery-ui.custom.min.js" />
     <Content Include="Assets\jquery\jquery.min.js" />
-    <Content Include="Assets\main\main.js" />
-    <Content Include="Assets\plugins\artTemple\template-debug.js" />
-    <Content Include="Assets\plugins\artTemple\template-native-debug.js" />
-    <Content Include="Assets\plugins\artTemple\template-native.js" />
-    <Content Include="Assets\plugins\artTemple\template.js" />
-    <Content Include="Assets\plugins\treegrid\css\jquery.treegrid.css" />
-    <Content Include="Assets\plugins\treegrid\img\collapse.png" />
-    <Content Include="Assets\plugins\treegrid\img\expand.png" />
-    <Content Include="Assets\plugins\treegrid\img\file.png" />
-    <Content Include="Assets\plugins\treegrid\img\folder.png" />
-    <Content Include="Assets\plugins\treegrid\js\jquery.cookie.js" />
-    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.bootstrap2.js" />
-    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.bootstrap3.js" />
-    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.js" />
-    <Content Include="Assets\plugins\treegrid\js\jquery.treegrid.min.js" />
-    <Content Include="Assets\plugins\treeview\bootstrap-treeview.css" />
-    <Content Include="Assets\plugins\treeview\bootstrap-treeview.js" />
+    <Content Include="Assets\main\css\main.css" />
+    <Content Include="Assets\main\js\contabs.js" />
+    <Content Include="Assets\main\js\index.js" />
+    <Content Include="Assets\plugins\animate\animate.css" />
+    <Content Include="Assets\plugins\artTemplate\template-debug.js" />
+    <Content Include="Assets\plugins\artTemplate\template-native-debug.js" />
+    <Content Include="Assets\plugins\artTemplate\template-native.js" />
+    <Content Include="Assets\plugins\artTemplate\template.js" />
+    <Content Include="Assets\plugins\layer\extend\layer.ext.js" />
+    <Content Include="Assets\plugins\layer\laydate\laydate.js" />
+    <Content Include="Assets\plugins\layer\laydate\need\laydate.css" />
+    <Content Include="Assets\plugins\layer\laydate\skins\default\icon.png" />
+    <Content Include="Assets\plugins\layer\laydate\skins\default\laydate.css" />
+    <Content Include="Assets\plugins\layer\layer.min.js" />
+    <Content Include="Assets\plugins\layer\layim\layim.css" />
+    <Content Include="Assets\plugins\layer\layim\layim.js" />
+    <Content Include="Assets\plugins\layer\layim\loading.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\icon-ext.png" />
+    <Content Include="Assets\plugins\layer\skin\default\icon.png" />
+    <Content Include="Assets\plugins\layer\skin\default\icon_ext.png" />
+    <Content Include="Assets\plugins\layer\skin\default\loading-0.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\loading-1.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\loading-2.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\textbg.png" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Assets\plugins\layer\skin\default\xubox_title0.png" />
+    <Content Include="Assets\plugins\layer\skin\layer.css" />
+    <Content Include="Assets\plugins\layer\skin\layer.ext.css" />
+    <Content Include="Assets\plugins\layer\skin\moon\default.png" />
+    <Content Include="Assets\plugins\layer\skin\moon\style.css" />
+    <Content Include="Assets\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="Assets\plugins\pace\pace.min.js" />
+    <Content Include="Assets\plugins\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Test\table.html" />
     <Content Include="Test\treeGrid.html" />
@@ -165,7 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\anguler\angular.js-1.5.0\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -174,18 +191,49 @@
     <Content Include="Views\MetaClass\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\fonts\fontawesome-webfont.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\fontawesome-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Assets\jquery\jquery.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\fonts\fontawesome-webfont.eot" />
-    <Content Include="Assets\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Assets\fonts\fontawesome-webfont.woff" />
-    <Content Include="Assets\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Assets\fonts\FontAwesome.otf" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\plugins\layer\.DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\plugins\layer\layim\data\chatlog.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\plugins\layer\layim\data\friend.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\plugins\layer\layim\data\group.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\plugins\layer\layim\data\groups.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
