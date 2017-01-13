@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\AjaxResult.cs" />
     <Compile Include="Business\Verify\Attributes\NotNullAttribute.cs" />
     <Compile Include="Business\Verify\Attributes\VerifyAttribute.cs" />
     <Compile Include="Business\Verify\VerifyResult.cs" />

@@ -32,8 +32,18 @@ namespace Mysoft.DataManager
                 return cls;
             }
         }
-        
 
 
+        public static List<MetaClassDefine> GetAllClass()
+        {
+            const string sql1 = "select * from MetaClassDefines";
+            const string sql2 = "select * from MetaPropertyDefines";
+            using (var db = DbQuery.New(true)) {
+                var list = db.ExecuteList<MetaClassDefine>(sql1);
+                var ps = db.ExecuteList<MetaPropertyDefine>(sql2);
+                list.ForEach(x => x.PropertyDefineList = ps.Where(p => p.ClassId == x.Id).ToList());
+                return list;
+            }
+        }
     }
 }

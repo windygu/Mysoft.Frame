@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "MetaClassListView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+<div class="col-sm-12">
+    <div class="ibox float-e-margins border" >
+        <div class="ibox-title no-borders">
+            @*<h5>自定义响应式表格</h5>*@
+            <h2>
+               对象类列表
+            </h2>
+          
+        </div>
+        <div class="ibox-content"> 
+            <div class="">
+                <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i>&nbsp;新增</button>
+                <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i>&nbsp;编辑</button>
+                <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i> 删除</button>
+                <div class=" pull-right">
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle">
+                            更多操作 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="buttons.html#">置顶</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html#" class="font-bold">修改</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html#">禁用</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="buttons.html#">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle">
+                            更多操作 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="buttons.html#">置顶</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html#" class="font-bold">修改</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html#">禁用</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="buttons.html#">删除</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    @*<div class="ibox-tools">
+                <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i> 编辑</button>
+            </div>*@
+            </div>
+            <div class="table-responsive">
+                <table id="tab-metaclass" class="table table-hover table-striped no-margins">
+                    <thead>
+                        <tr class="navy-bg">
+                            <th style="text-align:center">序号</th>
+                            <th style="text-align:center">名称</th>
+                            <th style="text-align:center">表名</th>
+                            <th style="text-align:center">状态</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyTemplate">
+                        <tr>
+                            <td align="center">{{i}}</td>
+                            <td align="center">{{Name}}</td>
+                            <td align="center">{{TableName}}</td>
+                            <td align="center">{{Id}}</td>
+                        </tr>
+                    </tbody> 
+                </table>
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Assets/plugins/artTemplate/template-debug.js"></script>
+<script src="~/Assets/main/js/controls.js"></script>
+<script>
+    var table = $('#tab-metaclass').MTable();
+    $.getJSON('/MetaClass/GetAllMetaClass', function (result) {
+        table.Draw(result);
+    })
+</script>

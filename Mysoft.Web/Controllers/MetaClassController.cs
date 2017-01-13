@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mysoft.Core;
+using Mysoft.DataManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +18,13 @@ namespace Mysoft.Web.Controllers
             return View();
         }
 
+        public JsonResult GetAllMetaClass()
+        {
+            return Json(AjaxResult.New(MetaBusiness.GetAllClass()),JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult MetaClassListView()
+        {
+            return View();
+        }
     }
 }

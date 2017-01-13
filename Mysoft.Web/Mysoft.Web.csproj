@@ -129,11 +129,14 @@
     <Content Include="Assets\fonts\font-awesome.min.css" />
     <Content Include="Assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\jquery\jquery-1.11.3.min.js" />
+    <Content Include="Assets\jquery\jquery-2.1.4.min.js" />
     <Content Include="Assets\jquery\jquery-ui-1.10.4.min.js" />
     <Content Include="Assets\jquery\jquery-ui.custom.min.js" />
     <Content Include="Assets\jquery\jquery.min.js" />
     <Content Include="Assets\main\css\main.css" />
     <Content Include="Assets\main\js\contabs.js" />
+    <Content Include="Assets\main\js\controls.js" />
     <Content Include="Assets\main\js\index.js" />
     <Content Include="Assets\plugins\animate\animate.css" />
     <Content Include="Assets\plugins\artTemplate\template-debug.js" />
@@ -234,6 +237,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\plugins\layer\layim\data\groups.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mysoft.Core\Mysoft.Core.csproj">
+      <Project>{682ADE7D-74C0-4880-995D-BB24A3A621B5}</Project>
+      <Name>Mysoft.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mysoft.DataManager\Mysoft.DataManager.csproj">
+      <Project>{BC1DC24C-6C10-4A26-92EC-7E5FA0F3E914}</Project>
+      <Name>Mysoft.DataManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MetaClass\MetaClassListView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -224,7 +224,7 @@ namespace Mysoft.Core
             {
                 var list = new List<T>();
                 var type = typeof(T);
-                var properties = type.GetProperties(System.Reflection.BindingFlags.SetProperty);
+                var properties = type.GetProperties();
                 var cmd = CreateDbCommand(sql, param);
                 if (conn.State != ConnectionState.Open)
                     conn.Open();
