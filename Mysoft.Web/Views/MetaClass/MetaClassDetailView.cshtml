@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "MetaClassDetailView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/plugins/iCheck/custom.css" rel="stylesheet" />
+<script src="~/Assets/plugins/iCheck/icheck.min.js"></script>
+<div class="col-md-12 col-sm-12">
+    <div class="ibox white-bg">
+        <div class="ibox-content">
+            <!-- Nav tabs -->
+            <ul id="metaclassinfos" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">对象类信息</a></li>
+                <li role="presentation"><a href="#properties" role="tab" data-toggle="tab">属性集</a></li>
+                <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">表格属性</a></li>
+                <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">显示定义</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" role="tabpanel" id="home">
+                    <div class="box-content">
+                        <form method="get" class="form-horizontal row">
+                            <div class="box-tools">
+                                <button class="btn btn-info btn-sm"><i class="fa fa-save"></i> 保存</button>
+                                <button class="btn btn-sm" disabled=""><i class="fa fa-pencil"></i> 编辑</button>
+                                <button class="btn btn-sm"><i class="fa fa-times"></i> 删除</button>
+
+                                <button class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+                            </div>
+                         
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                         
+                            <div class="form-group  col-sm-6">
+                                <label class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                            </div>
+                       
+                            <div class="form-group  col-sm-6">
+                                <label class="col-sm-2 control-label">提示</label>
+                                <div class="col-sm-10">
+                                    <input type="text" placeholder="提示信息" class="form-control">
+                                </div>
+                            </div>
+                          
+                            <div class="form-group  col-sm-6">
+                                <label class="col-sm-2 control-label">禁用</label>
+                                <div class="col-sm-10">
+                                   <label class="i-checks">
+                                    <div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><i></i> 自动登录</label>
+                                </div>
+                            </div>
+                        
+
+
+
+                        </form>
+                    </div>
+
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="properties">
+                    <div class="box-tools ">
+                        <button class="btn btn-success btn-sm"><i class="fa fa-check"></i> 保存</button>
+                        <button class="btn btn-sm " disabled=""><i class="fa fa-pencil"></i> 编辑</button>
+                        <button class="btn btn-sm "><i class="fa fa-times"></i> 删除</button>
+                        <button class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+
+                    </div>
+
+                    <div class="box-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default" tabindex="-1">Action</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="box-search">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <table></table>
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    3
+                </div>
+                <div role="tabpanel" class="tab-pane" id="settings">
+                    4
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

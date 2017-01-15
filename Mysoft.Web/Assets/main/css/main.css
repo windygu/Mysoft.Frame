@@ -7899,4 +7899,14 @@ body.skin-3 {
 }
 
 
- 
+.box-tools {
+    padding:5px;
+    position: relative;
+    border-bottom: 1px #eee dashed;
+   
+    margin: 0 15px 15px 15px;
+}
+.tab-content {
+    border:1px solid #eee;
+    border-top:none;
+}

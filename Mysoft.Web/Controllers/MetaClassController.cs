@@ -26,5 +26,10 @@ namespace Mysoft.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult MetaClassDetailView()
+        {
+            return View();
+        }
     }
 }

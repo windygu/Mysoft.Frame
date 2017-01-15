@@ -143,6 +143,10 @@
     <Content Include="Assets\plugins\artTemplate\template-native-debug.js" />
     <Content Include="Assets\plugins\artTemplate\template-native.js" />
     <Content Include="Assets\plugins\artTemplate\template.js" />
+    <Content Include="Assets\plugins\iCheck\custom.css" />
+    <Content Include="Assets\plugins\iCheck\green%402x.png" />
+    <Content Include="Assets\plugins\iCheck\green.png" />
+    <Content Include="Assets\plugins\iCheck\icheck.min.js" />
     <Content Include="Assets\plugins\layer\extend\layer.ext.js" />
     <Content Include="Assets\plugins\layer\laydate\laydate.js" />
     <Content Include="Assets\plugins\layer\laydate\need\laydate.css" />
@@ -253,6 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\MetaClass\MetaClassListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\MetaClass\MetaClassDetailView.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

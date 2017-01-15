@@ -89,11 +89,18 @@
         </div>
     </div>
 </div>
+
+ 
+<link href="~/Assets/plugins/layer/skin/layer.css" rel="stylesheet" />
 <script src="~/Assets/plugins/artTemplate/template-debug.js"></script>
 <script src="~/Assets/main/js/controls.js"></script>
+<script src="~/Assets/plugins/layer/layer.min.js"></script>
 <script>
     var table = $('#tab-metaclass').MTable();
     $.getJSON('/MetaClass/GetAllMetaClass', function (result) {
         table.Draw(result);
     })
+
+   
 </script>
+
