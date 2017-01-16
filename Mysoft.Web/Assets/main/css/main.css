@@ -7910,3 +7910,13 @@ body.skin-3 {
     border:1px solid #eee;
     border-top:none;
 }
+
+input[type=checkbox] {
+    width: 0px;
+    height: 0px;
+    margin-top: 0px;
+}
+
+.main-content {
+    min-height:600px;
+}

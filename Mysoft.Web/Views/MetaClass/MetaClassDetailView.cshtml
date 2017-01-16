@@ -6,7 +6,7 @@
 <script src="~/Assets/plugins/iCheck/icheck.min.js"></script>
 <div class="col-md-12 col-sm-12">
     <div class="ibox white-bg">
-        <div class="ibox-content">
+        <div class="ibox-content  main-content">
             <!-- Nav tabs -->
             <ul id="metaclassinfos" class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">对象类信息</a></li>
@@ -50,16 +50,12 @@
                             </div>
                           
                             <div class="form-group  col-sm-6">
-                                <label class="col-sm-2 control-label">禁用</label>
-                                <div class="col-sm-10">
-                                   <label class="i-checks">
-                                    <div class="icheckbox_square-green checked" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div><i></i> 自动登录</label>
+                                <label for="drop-remove" class="col-sm-2 control-label">禁用</label>
+                                <div class="col-sm-10 checkbox">
+                                    <input type='checkbox' id='drop-remove' class="i-checks" checked />
+ 
                                 </div>
                             </div>
-                        
-
-
-
                         </form>
                     </div>
 

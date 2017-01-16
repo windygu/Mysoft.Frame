@@ -13,12 +13,12 @@
             </h2>
           
         </div>
-        <div class="ibox-content"> 
+        <div class="ibox-content main-content"> 
             <div class="">
                 <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i>&nbsp;新增</button>
                 <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i>&nbsp;编辑</button>
                 <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i> 删除</button>
-                <div class=" pull-right">
+                <div class="pull-right">
                     <div class="btn-group">
                         <button data-toggle="dropdown" class="btn btn-white dropdown-toggle">
                             更多操作 <span class="caret"></span>
@@ -39,9 +39,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="btn-group pull-right">
+                    <div class="btn-group ">
                         <button data-toggle="dropdown" class="btn btn-white dropdown-toggle">
-                            更多操作 <span class="caret"></span>
+                            列表操作 <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li>
@@ -60,15 +60,12 @@
                         </ul>
                     </div>
                 </div>
-    @*<div class="ibox-tools">
-                <button class="btn btn-info btn-outline" type="button"><i class="fa fa-paste"></i> 编辑</button>
-            </div>*@
             </div>
             <div class="table-responsive">
                 <table id="tab-metaclass" class="table table-hover table-striped no-margins">
                     <thead>
                         <tr class="navy-bg">
-                            <th style="text-align:center">序号</th>
+                            <th width="60px" style="text-align:center">序号</th>
                             <th style="text-align:center">名称</th>
                             <th style="text-align:center">表名</th>
                             <th style="text-align:center">状态</th>
@@ -98,9 +95,27 @@
 <script>
     var table = $('#tab-metaclass').MTable();
     $.getJSON('/MetaClass/GetAllMetaClass', function (result) {
+        var data = result.Data[0];
+        for (var i = 0; i < 10; i++) {
+            result.Data[i] = data;
+        }
         table.Draw(result);
-    })
+    });
+   
+    table.OnDoubleClick = function () {
+        //iframe层
+        parent.layer.open({
+            type: 2,
+            title: '对象类',
+            shadeClose: true,
+            maxmin: true, //开启最大化最小化按钮
+            shade: 0.8,
+            area: ['90%', '90%'],
+            content: 'MetaClassDetailView' //iframe的url
+        });
 
+
+    }
    
 </script>
 

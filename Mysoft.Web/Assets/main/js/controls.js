@@ -41,7 +41,7 @@ MTable.prototype = {
             control.$tbody.find('tr').removeClass('success');
             $(this).addClass("success")
         }).bind('dblclick', function () {
-            alert(1);
+            control.OnDoubleClick();
         })
         return this;
     },
