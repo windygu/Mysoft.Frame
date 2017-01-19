@@ -45,5 +45,11 @@ namespace Mysoft.DataManager
                 return list;
             }
         }
+
+        public static string GetTableNameByObjClassId(string objClsId)
+        {
+            const string sql = "select tablename from MetaClassDefines where Id=@Id";
+            return DbQuery.New().ExecuteScalar<string>(sql, new { Id = objClsId });
+        }
     }
 }
