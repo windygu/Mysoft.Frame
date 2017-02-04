@@ -12,7 +12,7 @@ namespace Mysoft.Core
 
         public string Remark { get; set; }
 
-        public DateTime CreateOn { get; set; }
+        public DateTime CreateOn { get; set; } = DateTime.Now;
 
     }
 

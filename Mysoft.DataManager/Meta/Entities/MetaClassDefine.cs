@@ -22,5 +22,7 @@ namespace Mysoft.DataManager
         /// 属性
         /// </summary>
         public List<MetaPropertyDefine> PropertyDefineList { get; set; }
+
+      
     }
 }

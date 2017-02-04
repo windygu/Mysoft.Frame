@@ -24,6 +24,14 @@ namespace Mysoft.Core
         {
             return string.IsNullOrEmpty(str);
         }
+        public static string IfNullOrEmptyThen(this string str, string value)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return value;
+            }
+            return str;
+        }
         #endregion
 
         #region

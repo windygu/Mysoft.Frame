@@ -1,0 +1,28 @@
+﻿<div class="table-responsive">
+    <table id="tab-MetaClassLookUp" class="table table-hover table-striped no-margins">
+        <thead>
+            <tr class="navy-bg">
+                <th width="60px" style="text-align:center">序号</th>
+                <th style="text-align:center">名称</th>
+                <th style="text-align:center">表名</th>
+                <th style="text-align:center">状态</th>
+            </tr>
+        </thead>
+        <tbody class="tbodyTemplate">
+            <tr>
+                <td align="center">{{i}}</td>
+                <td align="center">{{Name}}</td>
+                <td align="center">{{TableName}}</td>
+                <td align="center">{{Id}}</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>
+
+<script>
+    var lookuptable = $('#tab-MetaClassLookUp').MTable({
+        dataSource:@Html.Raw(JsonHelper.SerializeObject(ViewBag.MetaClassDefines))
+    }); 
+     
+</script>
+

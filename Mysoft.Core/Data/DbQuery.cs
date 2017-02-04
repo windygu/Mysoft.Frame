@@ -334,7 +334,7 @@ namespace Mysoft.Core
                         continue;
                     var pa = comm.CreateParameter();
                     pa.ParameterName = "@" + p.Name;
-                    pa.Value = p.FastGetValue(param);
+                    pa.Value = p.FastGetValue(param) ?? DBNull.Value;
                     comm.Parameters.Add(pa);
                 }
             }

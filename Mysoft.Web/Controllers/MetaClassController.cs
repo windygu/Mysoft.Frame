@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Mysoft.Web.Controllers
 {
-    public class MetaClassController : Controller
+    public class MetaClassController : ControllerBase
     {
         //
         // GET: /MetaClass/
@@ -20,16 +20,43 @@ namespace Mysoft.Web.Controllers
 
         public JsonResult GetAllMetaClass()
         {
-            return Json(AjaxResult.New(MetaBusiness.GetAllClass()),JsonRequestBehavior.AllowGet);
+            return Json(AjaxResult.New(MetaBusiness.GetAllClass()));
         }
         public ActionResult MetaClassListView()
         {
             return View();
         }
 
+        #region detail
+
+        public JsonResult GetMetaClass(string id)
+        {
+            return Json(AjaxResult.New(MetaBusiness.GetMetaClassDefine(id)), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult MetaClassDetailView()
         {
             return View();
         }
+
+      
+        #endregion
+
+
+        #region 属性集
+        public JsonResult GetMetaProperties(string classId)
+        {
+            return Json(AjaxResult.New(MetaBusiness.GetPropertyDefines(classId)));
+        }
+        public JsonResult SaveMetaProperty(MetaPropertyDefine property)
+        {
+            return Json(AjaxResult.New(MetaBusiness.SavePropertyDefine(property)));
+        }
+        public JsonResult DeleteMetaProperty(string id)
+        {
+            return Json(AjaxResult.New(MetaBusiness.DeletePropertyDefine(id)));
+        }
+
+        #endregion
     }
 }

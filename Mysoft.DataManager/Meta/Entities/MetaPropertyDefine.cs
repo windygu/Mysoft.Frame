@@ -39,7 +39,7 @@ namespace Mysoft.DataManager
         /// <summary>
         /// 默认值
         /// </summary>
-        public string DefaultValue { get; set; }
+        public object DefaultValue { get; set; }
         /// <summary>
         /// 是否有默认值
         /// </summary>

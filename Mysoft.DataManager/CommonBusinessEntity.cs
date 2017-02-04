@@ -41,7 +41,7 @@ namespace Mysoft.DataManager
                 }
                 else
                 {
-                    throw new Exception(string.Format("对象属性{0} 不存在或者无权限访问", binder.Name));
+                    //throw new Exception(string.Format("对象属性{0} 不存在或者无权限访问", binder.Name));
                 }
             }
         }

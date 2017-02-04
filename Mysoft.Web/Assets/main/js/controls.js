@@ -1,18 +1,33 @@
-﻿var MTable = function ($dom, $pagination) {
+﻿
+
+
+var MTable = function ($dom, $pagination) {
     this.$dom = $dom;
     this.$tbody = null;
     this.$pagination = $pagination;
     this.trRender = null;
     this.options = {
-        IdKey: "Id"
+        IdKey: "Id",
+        dataSource: null,
+
     }
     this.paginationControl = new Pagination($pagination);
 }
 MTable.prototype = {
-    Init: function () {
+    _bindOptions: function (defaultOptions, selfOptions) {
+        if (!selfOptions)
+            return;
+        for (var key in defaultOptions) {
+            if (selfOptions[key] !== undefined) {
+                defaultOptions[key] = selfOptions[key];
+            }
+        }
+    },
+    Init: function (selfOptions) {
         this.$tbody = this.$dom.find('tbody');
         this.trRender = template.compile(this.$dom.find('.tbodyTemplate').html());
-
+        this._bindOptions(this.options, selfOptions);
+        this.Refresh();
         return this;
     },
     Add: function (row) {
@@ -22,26 +37,56 @@ MTable.prototype = {
     Remove: function (id) {
         this.$tbody.find('tr[id=' + id + ']').remove();
     },
+  
     Refresh: function () {
-
+        var type = typeof (this.options.dataSource);
+        var c = this; 
+        if (type === "string") {
+            var index = layer.load(1, {
+                shade: [0.1, '#fff'] //0.1透明度的白色背景
+            });
+            $.ajax({
+                url: this.options.dataSource,
+                success: function (result) {
+                    c.Draw(result);
+                    layer.close(index);
+                },
+                error: function (xhr) {
+                    layer.close(index);
+                }
+            })
+        } else if (this.options.dataSource) {
+            c.Draw(this.options.dataSource);
+        }
     },
     //data的结构{TotalCount,  Data =[{},{Id,Name}], PageIndex, PageSize}
     Draw: function (data) {
         this.Empty();
-        for (var i = 0; i < data.Data.length; i++) {
-            var row = data.Data[i];
-            row.i = i + 1;
-            this.Add(row);
+        if (typeof (data) === "object" && !Array.isArray(data)) {
+            //不是数组
+            for (var i = 0; i < data.Data.length; i++) {
+                var row = data.Data[i];
+                row.i = i + 1;
+                this.Add(row);
+            }
+            //分页
+            this.paginationControl.Draw(data); 
+        }
+        else {
+            //直接是数组
+            for (var i = 0; i < data.length; i++) {
+                var row = data[i];
+                row.i = i + 1;
+                this.Add(row);
+            }
         }
 
-        //分页
-        this.paginationControl.Draw(data);
         var control = this;
         this.$tbody.find('tr').unbind('click').bind('click', function () {
             control.$tbody.find('tr').removeClass('success');
             $(this).addClass("success")
         }).bind('dblclick', function () {
-            control.OnDoubleClick();
+            control.OnDoubleClick($(this).data(), $(this));
         })
         return this;
     },
@@ -56,7 +101,7 @@ MTable.prototype = {
         })
         return data;
     },
-    OnDoubleClick: function () {
+    OnDoubleClick: function (row) {
 
     }
 }
@@ -154,8 +199,178 @@ Pagination.prototype = {
 }
 
 
-$.fn.MTable = function () {
+$.fn.MTable = function (options) {
     var t = new MTable($(this));
-    t.Init();
+    t.Init(options);
     return t;
 }
+
+$.fn.setText = function (txt) {
+    if (this.attr('ng-text') !== undefined) {
+        this.val(txt);
+    }
+}
+$.fn.getVal = function () {
+    var val;
+    if (this.is(':Checkbox')) {
+        val = this.prop('checked');
+    } else if (this.attr('ng-text') !== undefined) {
+        return this.data("value");
+    } else {
+        val = this.val();
+    }
+    return val;
+};
+$.fn.setVal = function (val) {
+    if (this.is(':Checkbox')) {
+        this.prop('checked', val);
+    } else if (this.attr('ng-text') !== undefined) {
+        this.data("value", val);
+    } else {
+        this.val(val);
+    }
+};
+
+var MForm = function ($form) {
+    this.$form = $form;
+    this.data = null;
+}
+MForm.prototype = {
+    Bind: function (data) {
+        this.Reset();
+        var c = this;
+        if (!data) {
+            this.data = {};
+            this.$form.find('[ng-bind]').each(function () {
+                var name = $(this).attr('ng-bind');
+                var val = $(this).getVal();
+                c.data[name] = val;
+            })
+        } else {
+            this.data = data;
+        } 
+        this.$form.find('[ng-bind]').each(function () {
+            var name = $(this).attr('ng-bind');
+            var val = $(this).getVal();
+            $(this).setVal(c.data[name])
+            $(this).unbind('change').change(function () {
+                c.data[name] = $(this).getVal();
+            })
+        })
+        return this;
+    },
+    GetData: function () {
+        return this.data;
+    },
+    SetItem: function (key, val)
+    {
+        this.data[key] = val;
+        this.$form.find('[ng-bind="'+key+'"]').each(function () {
+            $(this).setVal(val)
+        })
+    },
+    Reset: function () {
+        this.$form[0].reset();
+    }
+}
+
+var MLookUp = function (dom){
+    this.$dom = dom;
+    this.$content = null;
+    this.$ipt = null;
+    this.options = {
+        idKey: "Id",
+        textKey:"Name",
+        dataSource: null,       
+        content: 
+            '<div class="table-responsive">'+
+                '<table id="tab-MetaClassLookUp" class="table table-hover table-striped no-margins">'+
+                    '<thead>'+
+                        '<tr class="navy-bg">'+
+                            '<th width="60px" style="text-align:center">序号</th>'+
+                            '<th style="text-align:center">名称</th>'+
+                            '<th style="text-align:center">表名</th>'+
+                            '<th style="text-align:center">状态</th>'+
+                        '</tr>'+
+                    '</thead>'+
+                    '<tbody class="tbodyTemplate">'+
+                        '<tr>'+
+                            '<td align="center">{{i}}</td>'+
+                            '<td align="center">{{Name}}</td>'+
+                            '<td align="center">{{TableName}}</td>'+
+                            '<td align="center">{{Id}}</td>'+
+                        '</tr>'+
+                    '</tbody>'+
+                '</table> '+
+            '</div>'
+    }
+}
+MLookUp.prototype = {
+    _bindOptions: function (defaultOptions, selfOptions) {
+        if (!selfOptions)
+            return;
+        for (var key in defaultOptions) {
+            if (selfOptions[key] !== undefined) {
+                defaultOptions[key] = selfOptions[key];
+            }
+        }
+    },
+    _initUI: function () {
+        this.$content = $(this.options.content);
+        this.$content.hide().appendTo($('body'));
+        this.tableContent = new MTable(this.$content);
+        this.tableContent.Init({ dataSource: this.options.dataSource });
+        var c = this;
+        this.tableContent.OnDoubleClick = function (row) {
+            c.OnSelected(row);
+            if (c._layerIndex) {
+                layer.close(c._layerIndex);
+            }
+        }
+        //初始化弹出按钮
+       
+        if (this.$dom.is('input')) {
+            this.$ipt = this.$dom;
+            this.$dom.click(function () {
+                c.Open();
+            })
+        } else {
+            this.$dom.find('input,button').click(function () {
+                c.Open();
+            })
+            this.$ipt = this.$dom.find('input');
+        }
+        
+
+    },
+    Init: function (selfOptions) {
+        this._bindOptions(this.options, selfOptions);
+        this._initUI();
+    },
+    Open: function () {
+        var c = this;
+        this._layerIndex = layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['60%', '60%'], //宽高
+            content: this.$content,//['/Control/metaclasslookup','no'],
+            btn: ['确认', '取消'],
+            yes: function (index, layero) {
+                var rows = c.tableContent.GetSeletedRows();
+                if (rows.length > 0) {
+                    c.OnSelected(rows[0]);
+                    layer.close(index);
+                }
+            },
+            cancel: function () {
+
+            }
+        });
+    },
+    OnSelected:function(data){
+        this.$ipt.setText(data[this.options.textKey])
+        this.$ipt.setVal(data[this.options.idKey])
+    }
+
+}
+

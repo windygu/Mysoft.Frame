@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="BusinessEntityBase.cs" />
     <Compile Include="CommonBusinessEntity.cs" />
+    <Compile Include="DataObj\CommonDataObj.cs" />
+    <Compile Include="DataObj\DataObjBase.cs" />
+    <Compile Include="DataObj\DynamicObjBase.cs" />
     <Compile Include="Meta\Entities\MetaClassDefine.cs" />
     <Compile Include="Meta\Entities\MetaDataType.cs" />
     <Compile Include="Meta\Entities\MetaDomain.cs" />
@@ -48,6 +51,7 @@
     <Compile Include="Meta\Entities\MetaShowType.cs" />
     <Compile Include="Meta\MetaDomainBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlCreator\SqlCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mysoft.Core\Mysoft.Core.csproj">

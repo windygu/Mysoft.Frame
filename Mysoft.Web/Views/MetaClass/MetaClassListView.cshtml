@@ -96,7 +96,8 @@
 <script src="~/Assets/main/js/controls.js"></script>
 <script src="~/Assets/plugins/layer/layer.min.js"></script>
 <script>
-    var table = $('#tab-metaclass').MTable();
+    var table = $('#tab-metaclass').MTable({
+    });
     $.getJSON('/MetaClass/GetAllMetaClass', function (result) {
         var data = result.Data[0];
         for (var i = 0; i < 10; i++) {
@@ -105,16 +106,17 @@
         table.Draw(result);
     });
    
-    table.OnDoubleClick = function () {
+    table.OnDoubleClick = function (data) {
+        
         //iframe层
         parent.layer.open({
             type: 2,
             title: '对象类',
-            shadeClose: true,
+            //shadeClose: true,
             maxmin: true, //开启最大化最小化按钮
             shade: 0.8,
             area: ['90%', '90%'],
-            content: 'MetaClassDetailView' //iframe的url
+            content: 'MetaClassDetailView?id=' + data.Id //iframe的url
         });
 
 

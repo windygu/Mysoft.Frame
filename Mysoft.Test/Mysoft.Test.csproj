@@ -57,6 +57,10 @@
       <Project>{682ade7d-74c0-4880-995d-bb24a3a621b5}</Project>
       <Name>Mysoft.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mysoft.DataManager\Mysoft.DataManager.csproj">
+      <Project>{bc1dc24c-6c10-4a26-92ec-7e5fa0f3e914}</Project>
+      <Name>Mysoft.DataManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

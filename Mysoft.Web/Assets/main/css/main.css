@@ -7897,7 +7897,7 @@ body.skin-3 {
         font-size: 12px
     }
 }
-
+/*self*/
 
 .box-tools {
     padding:5px;
@@ -7919,4 +7919,7 @@ input[type=checkbox] {
 
 .main-content {
     min-height:600px;
+}
+.form-horizontal .checkbox, .form-horizontal .radio {
+    min-height: 34px;
 }

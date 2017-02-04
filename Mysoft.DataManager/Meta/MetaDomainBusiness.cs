@@ -24,7 +24,7 @@ namespace Mysoft.DataManager
         public static MetaClassDefine GetMetaClassDefine(string classId)
         {
             const string sc = @"select * from MetaClassDefines where Id=@Id";
-            const string sp = @"select * from  MetaPropertyDefine where ClassId=@Id";
+            const string sp = @"select * from  MetaPropertyDefines where ClassId=@Id";
             using (var db = DbQuery.New(true)) {
                 var param = new { Id = classId };
                 var cls = db.ExecuteSingle<MetaClassDefine>(sc, param);
@@ -51,5 +51,31 @@ namespace Mysoft.DataManager
             const string sql = "select tablename from MetaClassDefines where Id=@Id";
             return DbQuery.New().ExecuteScalar<string>(sql, new { Id = objClsId });
         }
+
+        #region 属性集
+        public static MetaPropertyDefine SavePropertyDefine(MetaPropertyDefine p)
+        {
+            if (p.Id.IsNullOrEmpty())
+            {
+                p.Id = Guid.NewGuid().ToString();
+                DbQuery.Insert(p);
+            }
+            else {
+                DbQuery.Update(p);
+            }
+            return p;
+        }
+
+        public static List<MetaPropertyDefine> GetPropertyDefines(string classId)
+        {
+            const string sql2 = "select * from MetaPropertyDefines where classid=@ClassId";
+            return DbQuery.New().ExecuteList<MetaPropertyDefine>(sql2, new { ClassId = classId });
+        }
+        public static int DeletePropertyDefine(string id)
+        {
+            const string sql = "delete from MetaPropertyDefines where id =@Id";
+            return DbQuery.New().ExecuteNoQuery(sql, new { Id = id });
+        }
+        #endregion
     }
 }
